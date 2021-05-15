@@ -1,0 +1,11 @@
+"0","datos %>% group_by(mnth, yr) %>% mutate(
+  cantidad = sum(cnt)
+) %>% ungroup() %>%  group_by(yr) %>% mutate(
+  demanda =  max(cantidad)
+)  %>% filter(demanda == cantidad) %>% select(yr, mnth, demanda) %>% unique() %>%  kable(caption = ""Mes con mas demanda en cada anho"") %>% kable_styling(bootstrap_options = ""striped"", full_width = F) %>% row_spec(1:2, bold = T, color = ""white"", background = ""#D7261E"")
+"
+"0","datos %>% group_by(mnth, yr) %>% mutate("
+"0","  cantidad = sum(cnt)"
+"0",") %>% ungroup() %>%  group_by(yr) %>% mutate("
+"0","  demanda =  max(cantidad)"
+"0",")  %>% filter(demanda == cantidad) %>% select(yr, mnth, demanda) %>% unique() %>%  kable(caption = ""Mes con mas demanda en cada anho"") %>% kable_styling(bootstrap_options = ""striped"", full_width = F) %>% row_spec(1:2, bold = T, color = ""white"", background = ""#D7261E"")"

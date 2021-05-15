@@ -1,0 +1,94 @@
+---
+title: "Demo dplyr"
+output: html_notebook
+---
+## Cargamos Liberias
+```{r echo=TRUE}
+library(dplyr)
+library(nycflights13)
+#nycflights13
+```
+
+
+```{r}
+flights
+```
+```{r}
+glimpse(flights)
+```
+```{r}
+str(flights)
+```
+```{r}
+flights$carrier<-factor(flights$carrier)
+glimpse(flights)
+```
+```{r}
+select(flights, origin, dest)
+```
+```{r}
+flights %>%
+  select(ends_with("time"))
+```
+```{r}
+table(flights$origin)
+```
+```{r}
+prop.table(table(flights$origin))
+```
+```{r echo=TRUE}
+barplot(table(flights$origin),
+        xlab = "Aereopuerto", 
+        ylab = "Cantidad",
+        main = "Vuelos de Salida",
+        col=rainbow(3),
+        space = c(0),
+        ylim = c(0, 150000))
+```
+```{r}
+dep_delays<-
+  flights %>%
+  filter(dep_delay >= 60)
+
+nrow(dep_delays)
+```
+```{r}
+arr_delays<-
+  flights %>%
+  filter(arr_delay >= 60)
+nrow(arr_delays)
+```
+
+```{r}
+flights %>%
+  filter(carrier %in% c("UA", "AA"))
+```
+```{r}
+flights %>%
+  filter(hour %in% c(0:5))
+```
+```{r}
+flights <-
+  flights %>%
+  mutate(velocidad = (distance/1.605)/ (air_time/60))
+flights
+```
+```{r}
+df.Origin<-
+  flights %>%
+  group_by(origin) %>%
+  summarise(cantidad = n(), media = mean(arr_time, na.rm = T))
+df.Origin
+```
+```{r}
+library(ggplot2)
+flights %>%
+  ggplot(aes(x = arr_delay, y = ..density..)) +
+  geom_density(col="red", fill="blue") +
+  xlab("Minutos")+
+  ylab("Densidad")+
+  theme_classic()
+```
+
+
+
