@@ -129,8 +129,7 @@ datos %>% group_by(hum) %>% mutate(
 
 ```{r pregunta_6, echo=FALSE}
 
-datos %>% ggplot() + geom_density(aes(x=cnt, group=temp, fill=hum),alpha=0.5, adjust=2) + theme_minimal() 
-
+datos %>% ggplot() + geom_density(aes(x=temp, group=weathersit, fill=cnt),alpha=0.5, adjust=2) + theme_minimal() 
 
 ```
 
